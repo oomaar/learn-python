@@ -7,10 +7,19 @@ class Student:
         self.courses = courses
         Student.no_of_students += 1
 
-student1 = Student("Omar", 28, ['CS', 'Math'])
-student2 = Student("Menna")
-student2.age = 27
-student2.courses = ['CS', 'Math']
+    def describe (self):
+        print(f"my name is {self.name} and my age is {self.age}")
 
-print(student1.age, student2.age, student2.name)
-print(Student.no_of_students)
+    def is_old(self, num):
+        if self.age <= num:
+            print("Student is not old")
+        else:
+            print("student is old")
+
+student1 = Student("Omar", 28, ['CS', 'Math'])
+student2 = Student("Menna", 27, ['CS', 'Math'])
+
+student1.describe()
+student2.describe()
+
+student1.is_old(50)
