@@ -16,10 +16,14 @@ class Student:
         else:
             print("student is old")
 
+    def get_name(self):
+        return self.name
+
+    def set_name(self, new_name):
+        self.name = new_name
+
 student1 = Student("Omar", 28, ['CS', 'Math'])
-student2 = Student("Menna", 27, ['CS', 'Math'])
 
-student1.describe()
-student2.describe()
-
-student1.is_old(50)
+print(student1.get_name())
+student1.set_name("Islam")
+print(student1.get_name())
