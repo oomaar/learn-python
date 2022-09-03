@@ -1,45 +1,36 @@
-class Person:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-    
-    def display(self):
-        return f"name is {self.name} and age is {self.age}"
+from abc import ABC, abstractmethod
 
-class Man(Person):
-    gender = 'Male'
-    no_of_men = 0
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
 
-    def __init__(self, name, age, voice):
-        super().__init__(name, age)
-        self.voice = voice
-        Man.no_of_men +=1
+    @abstractmethod
+    def perimeter(self):
+        pass
 
-    def display(self):
-        string = super().display()
-        return string + f" and voice is {self.voice} and gender is {self.gender}"
+class Square(Shape):
+    def __init__(self, side):
+        self.__side = side
 
-class Woman(Person):
-    gender = 'Female'
-    no_of_women = 0
+    def area(self):
+        return self.__side * self.__side
 
-    def __init__(self, name, age, hair):
-        super().__init__(name, age)
-        self.hair = hair
-        Woman.no_of_women += 1
+    def perimeter(self):
+        return self.__side * 4
 
-    def display(self):
-        string = super().display()
-        return string + f" and hair is {self.hair} and gender is {self.gender}"
+class Rect(Shape):
+    def __init__(self, length, width):
+        self.__length = length
+        self.__width = width
 
-man = Man("Islam", 30, "hard")
-print(man.display())
-print(Man.no_of_men)
+    def area(self):
+        return self.__length * self.__width
 
-woman = Woman("Esraa", 30, "long")
-print(woman.display())
-print(woman.no_of_women)
+    def perimeter(self):
+        return self.__length + self.__width
 
-woman = Woman("Dalia", 20, "long")
-print(woman.display())
-print(woman.no_of_women)
+square = Square(10)
+print(f"square area is {square.area()} and perimeter is {square.perimeter()}")
+rect = Rect(5, 3)
+print(f"rectangle area is {rect.area()} and perimeter is {rect.perimeter()}")
