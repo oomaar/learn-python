@@ -1,33 +1,37 @@
+from datetime import date
+
 class Student:
     no_of_students = 0
 
-    def __init__(self, name, age=0, courses=[]):
-        self.__name = name
-        self.__age = age
-        self.__courses = courses
+    def __init__(self, name, age=0):
+        self.name = name
+        self.age = age
         Student.no_of_students += 1
 
     def describe (self):
-        print(f"my name is {self.__name} and my age is {self.__age}")
+        print(f"my name is {self.name} and my age is {self.age}")
 
-    def get_name(self):
-        return self.__name
+    @classmethod
+    def initFromBirthYear(cls, name, birthYear):
+        return cls(name, date.today().year - birthYear)
 
-    def set_name(self, new_name):
-        self.__name = new_name
+class Pizza:
+    def __init__(self, ingredients):
+        self.ingredients = ingredients
 
-    def get_age(self):
-        return self.__age
+    @classmethod
+    def veg(cls):
+        return cls(['Mushrooms', 'onions', 'olives'])
 
-    def set_age(self, new_age):
-        self.__age = new_age
+    @classmethod
+    def margrita(cls):
+        return cls(['Motzarella', 'sause'])
 
-student1 = Student("Omar", 28, ['CS', 'Math'])
 
-print(student1.get_name())
-print(student1.get_age())
-student1.set_name("Omar Hassan")
-print(student1.get_name())
-student1.set_age(29)
-print(student1.get_age())
-print(student1.describe())
+pizza1 = Pizza(['Tomatto', 'Olives'])
+pizza2 = Pizza.veg()
+pizza3 = Pizza.margrita()
+
+print(pizza1)
+print(pizza2)
+print(pizza3)
