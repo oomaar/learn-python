@@ -1,37 +1,36 @@
-from datetime import date
+class Math:
 
-class Student:
-    no_of_students = 0
+    @staticmethod
+    def add(x, y):
+        return x + y
 
-    def __init__(self, name, age=0):
-        self.name = name
-        self.age = age
-        Student.no_of_students += 1
+    @staticmethod
+    def add5(num):
+        return num + 5
 
-    def describe (self):
-        print(f"my name is {self.name} and my age is {self.age}")
+    @staticmethod
+    def add10(num):
+        return num + 10
 
-    @classmethod
-    def initFromBirthYear(cls, name, birthYear):
-        return cls(name, date.today().year - birthYear)
+    @staticmethod
+    def PI():
+        return 3.14
 
 class Pizza:
-    def __init__(self, ingredients):
+    def __init__(self, radius, ingredients):
         self.ingredients = ingredients
+        self.radius = radius
 
-    @classmethod
-    def veg(cls):
-        return cls(['Mushrooms', 'onions', 'olives'])
+    def __str__(self):
+        return f'Pizza ingredients are {self.ingredients}'
 
-    @classmethod
-    def margrita(cls):
-        return cls(['Motzarella', 'sause'])
+    def area(self):
+        return Pizza.circle_area(self.radius)
 
+    @staticmethod
+    def circle_area(r):
+        return r ** 2 * Math.PI()
 
-pizza1 = Pizza(['Tomatto', 'Olives'])
-pizza2 = Pizza.veg()
-pizza3 = Pizza.margrita()
-
-print(pizza1)
-print(pizza2)
-print(pizza3)
+p = Pizza(6, ['Mozzarella', 'Felfel'])
+print(p.area())
+print(Pizza.circle_area(4))
