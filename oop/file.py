@@ -1,36 +1,45 @@
-class Math:
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def display(self):
+        return f"name is {self.name} and age is {self.age}"
 
-    @staticmethod
-    def add(x, y):
-        return x + y
+class Man(Person):
+    gender = 'Male'
+    no_of_men = 0
 
-    @staticmethod
-    def add5(num):
-        return num + 5
+    def __init__(self, name, age, voice):
+        super().__init__(name, age)
+        self.voice = voice
+        Man.no_of_men +=1
 
-    @staticmethod
-    def add10(num):
-        return num + 10
+    def display(self):
+        string = super().display()
+        return string + f" and voice is {self.voice} and gender is {self.gender}"
 
-    @staticmethod
-    def PI():
-        return 3.14
+class Woman(Person):
+    gender = 'Female'
+    no_of_women = 0
 
-class Pizza:
-    def __init__(self, radius, ingredients):
-        self.ingredients = ingredients
-        self.radius = radius
+    def __init__(self, name, age, hair):
+        super().__init__(name, age)
+        self.hair = hair
+        Woman.no_of_women += 1
 
-    def __str__(self):
-        return f'Pizza ingredients are {self.ingredients}'
+    def display(self):
+        string = super().display()
+        return string + f" and hair is {self.hair} and gender is {self.gender}"
 
-    def area(self):
-        return Pizza.circle_area(self.radius)
+man = Man("Islam", 30, "hard")
+print(man.display())
+print(Man.no_of_men)
 
-    @staticmethod
-    def circle_area(r):
-        return r ** 2 * Math.PI()
+woman = Woman("Esraa", 30, "long")
+print(woman.display())
+print(woman.no_of_women)
 
-p = Pizza(6, ['Mozzarella', 'Felfel'])
-print(p.area())
-print(Pizza.circle_area(4))
+woman = Woman("Dalia", 20, "long")
+print(woman.display())
+print(woman.no_of_women)
